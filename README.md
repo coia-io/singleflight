@@ -5,7 +5,7 @@ This is merely a wrapper for x/sync/singleflight, removing the annoying type ass
 ## Install
 
 ```shell
-go get github.com/coia-io/singleflight
+go get github.com/coia-io/singleflight@v0.1.1
 ```
 
 ## Example usage
@@ -31,14 +31,14 @@ type Cat struct {
 func (c *Cat) GetColor() string { return c.Color }
 
 func main() {
-	u, err, _ := singleflight.Do[User]("key", func() (any, error) { return &User{"Zephyr"}, nil })
+	u, err, _ := singleflight.Do[User]("key", func() (any, error) { return User{"Zephyr"}, nil })
     if err != nil {
 		fmt.Println(err)
 		return
     }
 	fmt.Println(u.GetName())
 	
-	c, err, _ := singleflight.Do[Cat]("key", func() (any, error) { return &Cat{"Black"}, nil })
+	c, err, _ := singleflight.Do[Cat]("key", func() (any, error) { return Cat{"Black"}, nil })
 	if err != nil {
 		fmt.Println(err)
 		return
